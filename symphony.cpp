@@ -1,3 +1,5 @@
+// Symphony program
+
 #include <iostream>
 #include <cstring>
 #include <cstdio>
