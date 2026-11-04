@@ -36,9 +36,11 @@ int count_word(char *lim, char *sent) {
 }
 
 char **split_sent(char *sent, char *lim) {
-    char **new_split = (char **)malloc(sizeof(char *) * (count_word(lim, sent) + 2));
-    char *buffer = NULL;
+    if (!lim)
+        lim = strdup(" \t;");
     auto i = 0;
+    char *buffer = NULL;
+    char **new_split = (char **)malloc(sizeof(char *) * (count_word(lim, sent) + 2));
 
     buffer = strtok(sent, lim);
     while (buffer != NULL) {
@@ -57,7 +59,7 @@ int main(int argc, char **argv) {
     if (argc < 2)
         exit(84);
     while (argv[i]) {
-        split = split_sent(argv[i], " \t");
+        split = split_sent(argv[i], NULL);
         reply_combine(split);
         i += 1;
     }
